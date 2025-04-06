@@ -1261,94 +1261,187 @@ function sitinklib:Start(GuiConfig)
                 CountItem = CountItem + 1
                 return SeperatorFunc
             end
-            function Items:Paragraph(ParagraphConfig)
-                local ParagraphConfig = ParagraphConfig or {}
-                ParagraphConfig.Title = ParagraphConfig.Title or "Paragraph"
-                ParagraphConfig.Content = ParagraphConfig.Content or ""
-                local ParagraphFunc = {}
+             function Items:Paragraph(ParagraphConfig)
+    local ParagraphConfig = ParagraphConfig or {}
+    ParagraphConfig.Title = ParagraphConfig.Title or "Paragraph"
+    ParagraphConfig.Content = ParagraphConfig.Content or ""
+    local ParagraphFunc = {}
 
-                local Paragraph = Instance.new("Frame");
-                local UICorner120 = Instance.new("UICorner");
-                local ParagraphContent = Instance.new("TextLabel");
-                local ParagraphTitle = Instance.new("TextLabel");
+    local Paragraph = Instance.new("Frame")
+    local UICorner120 = Instance.new("UICorner")
+    local ParagraphContent = Instance.new("TextLabel")
+    local ParagraphTitle = Instance.new("TextLabel")
 
-                Paragraph.BackgroundColor3 = Color3.fromRGB(42.000001296401024, 42.000001296401024, 42.000001296401024)
-                Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                Paragraph.BorderSizePixel = 0
-                Paragraph.LayoutOrder = CountItem
-                Paragraph.Size = UDim2.new(1, -8, 0, 44)
-                Paragraph.Name = "Paragraph"
-                Paragraph.Parent = ScrollLayer1
+    Paragraph.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+    Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Paragraph.BorderSizePixel = 0
+    Paragraph.LayoutOrder = CountItem
+    Paragraph.Size = UDim2.new(1, -8, 0, 44)
+    Paragraph.Name = "Paragraph"
+    Paragraph.Parent = ScrollLayer1
 
-                UICorner120.CornerRadius = UDim.new(0, 3)
-                UICorner120.Parent = Paragraph
+    UICorner120.CornerRadius = UDim.new(0, 3)
+    UICorner120.Parent = Paragraph
 
-                ParagraphContent.Font = Enum.Font.GothamBold
-                ParagraphContent.LineHeight = 0.8999999761581421
-                ParagraphContent.Text = ParagraphConfig.Content
-                ParagraphContent.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-                ParagraphContent.TextSize = 11
-                ParagraphContent.TextTransparency = 0.5
-                ParagraphContent.TextXAlignment = Enum.TextXAlignment.Left
-                ParagraphContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                ParagraphContent.BackgroundTransparency = 0.9990000128746033
-                ParagraphContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ParagraphContent.BorderSizePixel = 0
-                ParagraphContent.Position = UDim2.new(0, 10, 0, 22)
-                ParagraphContent.Size = UDim2.new(1, -20, 0, 11)
-                ParagraphContent.Name = "ParagraphContent"
-                ParagraphContent.Parent = Paragraph
+    ParagraphContent.Font = Enum.Font.GothamBold
+    ParagraphContent.LineHeight = 0.9
+    ParagraphContent.Text = ParagraphConfig.Content
+    ParagraphContent.TextColor3 = Color3.fromRGB(230, 230, 230)
+    ParagraphContent.TextSize = 11
+    ParagraphContent.TextTransparency = 0.5
+    ParagraphContent.TextXAlignment = Enum.TextXAlignment.Left
+    ParagraphContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphContent.BackgroundTransparency = 0.999
+    ParagraphContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ParagraphContent.BorderSizePixel = 0
+    ParagraphContent.Position = UDim2.new(0, 10, 0, 22)
+    ParagraphContent.Size = UDim2.new(1, -20, 0, 11)
+    ParagraphContent.Name = "ParagraphContent"
+    ParagraphContent.Parent = Paragraph
 
-                if ParagraphContent.Text == "" then
-                    Paragraph.Size = UDim2.new(1, -8, 0, 33)
-                else
-                    ParagraphContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-                        ParagraphContent.TextWrapped = false
-                        ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
-                        Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
-                        ParagraphContent.TextWrapped = true
-                        UpSize(ScrollLayer1)
-                    end)
-                    
-                    ParagraphContent.TextWrapped = false
-                    ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
-                    Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
-                    ParagraphContent.TextWrapped = true
-                    UpSize(ScrollLayer1)
-                end
-                ParagraphTitle.Font = Enum.Font.GothamBold
-                ParagraphTitle.Text = ParagraphConfig.Title
-                ParagraphTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-                ParagraphTitle.TextSize = 12
-                ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
-                ParagraphTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                ParagraphTitle.BackgroundTransparency = 0.9990000128746033
-                ParagraphTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ParagraphTitle.BorderSizePixel = 0
-                ParagraphTitle.Position = UDim2.new(0, 10, 0, 10)
-                ParagraphTitle.Size = UDim2.new(1, -20, 0, 12)
-                ParagraphTitle.Name = "ParagraphTitle"
-                ParagraphTitle.Parent = Paragraph
+    if ParagraphContent.Text == "" then
+        Paragraph.Size = UDim2.new(1, -8, 0, 33)
+    else
+        ParagraphContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+            ParagraphContent.TextWrapped = false
+            ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+            Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+            ParagraphContent.TextWrapped = true
+            UpSize(ScrollLayer1)
+        end)
+        
+        ParagraphContent.TextWrapped = false
+        ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+        Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+        ParagraphContent.TextWrapped = true
+        UpSize(ScrollLayer1)
+    end
 
-                function ParagraphFunc:Set(Value)
-                    local Value = Value or {}
-                    Value.Title = Value.Title or ParagraphTitle.Text
-                    Value.Content = Value.Content or ParagraphContent.Text
+    ParagraphTitle.Font = Enum.Font.GothamBold
+    ParagraphTitle.Text = ParagraphConfig.Title
+    ParagraphTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphTitle.TextSize = 12
+    ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
+    ParagraphTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphTitle.BackgroundTransparency = 0.999
+    ParagraphTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ParagraphTitle.BorderSizePixel = 0
+    ParagraphTitle.Position = UDim2.new(0, 10, 0, 10)
+    ParagraphTitle.Size = UDim2.new(1, -20, 0, 12)
+    ParagraphTitle.Name = "ParagraphTitle"
+    ParagraphTitle.Parent = Paragraph
 
-                    ParagraphTitle.Text = Value.Title
-                    ParagraphContent.Text = Value.Content
-                    if ParagraphContent.Text == "" then
-                        Paragraph.Size = UDim2.new(1, -8, 0, 33)
-                    else
-                        ParagraphContent.TextWrapped = false
-                        ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
-                        Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
-                        ParagraphContent.TextWrapped = true
-                    end
-                end
-                CountItem = CountItem + 1
-                return ParagraphFunc
-            end
+    function ParagraphFunc:Set(Value)
+        local Value = Value or {}
+        Value.Title = Value.Title or ParagraphTitle.Text
+        Value.Content = Value.Content or ParagraphContent.Text
+
+        ParagraphTitle.Text = Value.Title
+        ParagraphContent.Text = Value.Content
+        if ParagraphContent.Text == "" then
+            Paragraph.Size = UDim2.new(1, -8, 0, 33)
+        else
+            ParagraphContent.TextWrapped = false
+            ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+            Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+            ParagraphContent.TextWrapped = true
+        end
+    end
+
+    CountItem = CountItem + 1
+    return ParagraphFunc
+end
+
+function Items:Paragraph1(ParagraphConfig)
+    local ParagraphConfig = ParagraphConfig or {}
+    ParagraphConfig.Title = ParagraphConfig.Title or "Paragraph"
+    ParagraphConfig.Content = ParagraphConfig.Content or ""
+    local ParagraphFunc = {}
+
+    local Paragraph = Instance.new("Frame")
+    local UICorner120 = Instance.new("UICorner")
+    local ParagraphContent = Instance.new("TextLabel")
+    local ParagraphTitle = Instance.new("TextLabel")
+
+    Paragraph.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+    Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Paragraph.BorderSizePixel = 0
+    Paragraph.LayoutOrder = CountItem
+    Paragraph.Size = UDim2.new(1, -8, 0, 44)
+    Paragraph.Name = "Paragraph1"
+    Paragraph.Parent = ScrollLayer1
+
+    UICorner120.CornerRadius = UDim.new(0, 3)
+    UICorner120.Parent = Paragraph
+
+    ParagraphContent.Font = Enum.Font.GothamBold
+    ParagraphContent.LineHeight = 0.9
+    ParagraphContent.Text = ParagraphConfig.Content
+    ParagraphContent.TextColor3 = Color3.fromRGB(230, 230, 230)
+    ParagraphContent.TextSize = 11
+    ParagraphContent.TextTransparency = 0.5
+    ParagraphContent.TextXAlignment = Enum.TextXAlignment.Left
+    ParagraphContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphContent.BackgroundTransparency = 0.999
+    ParagraphContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ParagraphContent.BorderSizePixel = 0
+    ParagraphContent.Position = UDim2.new(0, 10, 0, 22)
+    ParagraphContent.Size = UDim2.new(1, -20, 0, 11)
+    ParagraphContent.Name = "ParagraphContent"
+    ParagraphContent.Parent = Paragraph
+
+    if ParagraphContent.Text == "" then
+        Paragraph.Size = UDim2.new(1, -8, 0, 33)
+    else
+        ParagraphContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+            ParagraphContent.TextWrapped = false
+            ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+            Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+            ParagraphContent.TextWrapped = true
+            UpSize(ScrollLayer1)
+        end)
+        
+        ParagraphContent.TextWrapped = false
+        ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+        Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+        ParagraphContent.TextWrapped = true
+        UpSize(ScrollLayer1)
+    end
+
+    ParagraphTitle.Font = Enum.Font.GothamBold
+    ParagraphTitle.Text = ParagraphConfig.Title
+    ParagraphTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphTitle.TextSize = 12
+    ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Center -- Căn giữa Title
+    ParagraphTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ParagraphTitle.BackgroundTransparency = 0.999
+    ParagraphTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    ParagraphTitle.BorderSizePixel = 0
+    ParagraphTitle.Position = UDim2.new(0, 10, 0, 10)
+    ParagraphTitle.Size = UDim2.new(1, -20, 0, 12)
+    ParagraphTitle.Name = "ParagraphTitle"
+    ParagraphTitle.Parent = Paragraph
+
+    function ParagraphFunc:Set(Value)
+        local Value = Value or {}
+        Value.Title = Value.Title or ParagraphTitle.Text
+        Value.Content = Value.Content or ParagraphContent.Text
+
+        ParagraphTitle.Text = Value.Title
+        ParagraphContent.Text = Value.Content
+        if ParagraphContent.Text == "" then
+            Paragraph.Size = UDim2.new(1, -8, 0, 33)
+        else
+            ParagraphContent.TextWrapped = false
+            ParagraphContent.Size = UDim2.new(1, -150, 0, 11 + (11 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+            Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 33)
+            ParagraphContent.TextWrapped = true
+        end
+    end
+
+    CountItem = CountItem + 1
+    return ParagraphFunc
+end
             function Items:Button(ButtonConfig)
                 local ButtonConfig = ButtonConfig or {}
                 ButtonConfig.Title = ButtonConfig.Title or "Button"
@@ -1922,7 +2015,7 @@ function sitinklib:Start(GuiConfig)
                 CountItem = CountItem + 1
                 return SliderFunc
             end
-function Items:Dropdown(DropdownConfig)
+     function Items:Dropdown(DropdownConfig)
     local DropdownConfig = DropdownConfig or {}
     DropdownConfig.Title = DropdownConfig.Title or "Title"
     DropdownConfig.Options = DropdownConfig.Options or {}
