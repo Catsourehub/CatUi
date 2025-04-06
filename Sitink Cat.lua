@@ -1127,6 +1127,161 @@ function Tabs:MakeTab(NameTab)
             CountItem = CountItem + 1
             return SeperatorFunc
         end
+    -- Create TabItems for the tab level
+    local TabItems = CreateItems(ScrollLayer)
+
+    -- Add Section functionality to TabItems
+    local CountSection = 0
+    function TabItems:Section(SectionConfig)
+        local SectionConfig = SectionConfig or {}
+        SectionConfig.Title = SectionConfig.Title or "Title"
+        SectionConfig.Content = SectionConfig.Content or ""
+
+        local ScrollLayer1 = Instance.new("ScrollingFrame")
+        local UIListLayout3 = Instance.new("UIListLayout")
+
+        ScrollLayer1.CanvasSize = UDim2.new(0, 0, 0, 0)
+        ScrollLayer1.ScrollBarImageTransparency = 0.8999999761581421
+        ScrollLayer1.ScrollBarThickness = 3
+        ScrollLayer1.Active = true
+        ScrollLayer1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ScrollLayer1.BackgroundTransparency = 0.9990000128746033
+        ScrollLayer1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        ScrollLayer1.BorderSizePixel = 0
+        ScrollLayer1.LayoutOrder = CountTab
+        ScrollLayer1.Size = UDim2.new(1, 0, 1, 0)
+        ScrollLayer1.Name = "ScrollLayer"
+        ScrollLayer1.Parent = LayersFolder
+
+        UIListLayout3.Padding = UDim.new(0, 4)
+        UIListLayout3.SortOrder = Enum.SortOrder.LayoutOrder
+        UIListLayout3.Parent = ScrollLayer1
+
+        AutoUp(ScrollLayer1)
+
+        local Section = Instance.new("Frame")
+        local UICorner29 = Instance.new("UICorner")
+        local SectionName = Instance.new("TextLabel")
+        local SectionDescription = Instance.new("TextLabel")
+        local SectionImage = Instance.new("ImageLabel")
+        local SectionButton = Instance.new("TextButton")
+
+        Section.BackgroundColor3 = Color3.fromRGB(42.000001296401024, 42.000001296401024, 42.000001296401024)
+        Section.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        Section.BorderSizePixel = 0
+        Section.Size = UDim2.new(1, -8, 0, 44)
+        Section.Name = "Section"
+        Section.LayoutOrder = CountSection
+        Section.Parent = ScrollLayer
+
+        UICorner29.CornerRadius = UDim.new(0, 3)
+        UICorner29.Parent = Section
+
+        SectionName.Font = Enum.Font.GothamBold
+        SectionName.Text = SectionConfig.Title
+        SectionName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        SectionName.TextSize = 13
+        SectionName.TextXAlignment = Enum.TextXAlignment.Left
+        SectionName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SectionName.BackgroundTransparency = 0.9990000128746033
+        SectionName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        SectionName.BorderSizePixel = 0
+        SectionName.Position = UDim2.new(0, 10, 0, 10)
+        SectionName.Size = UDim2.new(1, -70, 0, 13)
+        SectionName.Name = "SectionName"
+        SectionName.Parent = Section
+
+        SectionDescription.Font = Enum.Font.GothamBold
+        SectionDescription.LineHeight = 0.8999999761581421
+        SectionDescription.Text = SectionConfig.Content
+        SectionDescription.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
+        SectionDescription.TextSize = 11
+        SectionDescription.TextTransparency = 0.5
+        SectionDescription.TextXAlignment = Enum.TextXAlignment.Left
+        SectionDescription.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SectionDescription.BackgroundTransparency = 0.9990000128746033
+        SectionDescription.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        SectionDescription.BorderSizePixel = 0
+        SectionDescription.Position = UDim2.new(0, 10, 0, 22)
+        SectionDescription.Size = UDim2.new(1, -70, 0, 11)
+        SectionDescription.Name = "SectionDescription"
+        SectionDescription.Parent = Section
+
+        if SectionDescription.Text == "" then
+            Section.Size = UDim2.new(1, -8, 0, 33)
+        else
+            SectionDescription:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+                SectionDescription.TextWrapped = false
+                SectionDescription.Size = UDim2.new(1, -70, 0, 11 + (11 * (SectionDescription.TextBounds.X // SectionDescription.AbsoluteSize.X)))
+                Section.Size = UDim2.new(1, -8, 0, SectionDescription.AbsoluteSize.Y + 33)
+                SectionDescription.TextWrapped = true
+                UpSize(ScrollLayer)
+            end)
+
+            SectionDescription.TextWrapped = false
+            SectionDescription.Size = UDim2.new(1, -70, 0, 11 + (11 * (SectionDescription.TextBounds.X // SectionDescription.AbsoluteSize.X)))
+            Section.Size = UDim2.new(1, -8, 0, SectionDescription.AbsoluteSize.Y + 33)
+            SectionDescription.TextWrapped = true
+            UpSize(ScrollLayer1)
+        end
+
+        SectionImage.Image = "rbxassetid://16851841101"
+        SectionImage.ImageTransparency = 0.699999988079071
+        SectionImage.AnchorPoint = Vector2.new(1, 0.5)
+        SectionImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SectionImage.BackgroundTransparency = 0.9990000128746033
+        SectionImage.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        SectionImage.BorderSizePixel = 0
+        SectionImage.Position = UDim2.new(1, -10, 0.5, 0)
+        SectionImage.Rotation = -90
+        SectionImage.Size = UDim2.new(0, 22, 0, 22)
+        SectionImage.Name = "SectionImage"
+        SectionImage.Parent = Section
+
+        SectionButton.Font = Enum.Font.SourceSans
+        SectionButton.Text = ""
+        SectionButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+        SectionButton.TextSize = 14
+        SectionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        SectionButton.BackgroundTransparency = 0.9990000128746033
+        SectionButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        SectionButton.BorderSizePixel = 0
+        SectionButton.Size = UDim2.new(1, 0, 1, 0)
+        SectionButton.Name = "SectionButton"
+        SectionButton.Parent = Section
+
+        SectionButton.Activated:Connect(function()
+            UIPageLayout:JumpToIndex(ScrollLayer1.LayoutOrder)
+            TweenService:Create(
+                BackButton,
+                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                {TextTransparency = 0.7}
+            ):Play()
+            BackButton1.Text = SectionName.Text
+            TweenService:Create(
+                BackButton1,
+                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                {TextTransparency = 0}
+            ):Play()
+            TweenService:Create(
+                ForwardImage,
+                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                {ImageTransparency = 0}
+            ):Play()
+        end)
+        EnterMouse(Section)
+
+        -- Create Items for this Section
+        local SectionItems = CreateItems(ScrollLayer1)
+
+        CountSection = CountSection + 1
+        return SectionItems
+    end
+
+    CountTab = CountTab + 1
+    return TabItems
+end
+
              function Items:Paragraph(ParagraphConfig)
     local ParagraphConfig = ParagraphConfig or {}
     ParagraphConfig.Title = ParagraphConfig.Title or "Paragraph"
