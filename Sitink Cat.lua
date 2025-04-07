@@ -2953,16 +2953,16 @@ function Items:DropdownMulti(DropdownConfig)
         end
     end)
 
-    CountItem = CountItem + 1
-    return DropdownFunc
-end
-            CountSection = CountSection + 1
-            CountTab = CountTab + 1
+                CountSection = CountSection + 1
+            CountTab = CountTab + 1 -- Tăng CountTab trong Section để đồng bộ
             return Items
         end
+
         CountTab = CountTab + 1
         return Sections
     end
+
     return Tabs
 end
+
 return sitinklib
