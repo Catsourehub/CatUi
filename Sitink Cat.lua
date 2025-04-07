@@ -938,153 +938,150 @@ function sitinklib:Start(GuiConfig)
 	local Tabs = {}
 	local CountTab = 0
     function Tabs:MakeTab(NameTab)
-    local NameTab = NameTab or ""
-    local ScrollLayer = Instance.new("ScrollingFrame")
-    local UIListLayout1 = Instance.new("UIListLayout")
+        local NameTab = NameTab or ""
+        local ScrollLayer = Instance.new("ScrollingFrame");
+        local UIListLayout1 = Instance.new("UIListLayout");
 
-    ScrollLayer.ScrollBarImageColor3 = Color3.fromRGB(55, 55, 55)
-    ScrollLayer.ScrollBarThickness = 3
-    ScrollLayer.Active = true
-    ScrollLayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    ScrollLayer.BackgroundTransparency = 0.999
-    ScrollLayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    ScrollLayer.BorderSizePixel = 0
-    ScrollLayer.Size = UDim2.new(1, 0, 1, 0)
-    ScrollLayer.Name = "ScrollLayer"
-    ScrollLayer.LayoutOrder = CountTab
-    ScrollLayer.Parent = LayersFolder
+        ScrollLayer.ScrollBarImageColor3 = Color3.fromRGB(55.00000052154064, 55.00000052154064, 55.00000052154064)
+        ScrollLayer.ScrollBarThickness = 3
+        ScrollLayer.Active = true
+        ScrollLayer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ScrollLayer.BackgroundTransparency = 0.9990000128746033
+        ScrollLayer.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        ScrollLayer.BorderSizePixel = 0
+        ScrollLayer.Size = UDim2.new(1, 0, 1, 0)
+        ScrollLayer.Name = "ScrollLayer"
+        ScrollLayer.LayoutOrder = CountTab
+        ScrollLayer.Parent = LayersFolder
 
-    UIListLayout1.Padding = UDim.new(0, 4)
-    UIListLayout1.SortOrder = Enum.SortOrder.LayoutOrder
-    UIListLayout1.Parent = ScrollLayer
+        UIListLayout1.Padding = UDim.new(0, 4)
+        UIListLayout1.SortOrder = Enum.SortOrder.LayoutOrder
+        UIListLayout1.Parent = ScrollLayer
 
-    AutoUp(ScrollLayer)
+        AutoUp(ScrollLayer)
 
-    local Tab = Instance.new("Frame")
-    local UICorner1 = Instance.new("UICorner")
-    local ChoosingFrame = Instance.new("Frame")
-    local UIStroke = Instance.new("UIStroke")
-    local UICorner2 = Instance.new("UICorner")
-    local TabName = Instance.new("TextLabel")
-    local TabButton = Instance.new("TextButton")
+        local Tab = Instance.new("Frame");
+        local UICorner1 = Instance.new("UICorner");
+        local ChoosingFrame = Instance.new("Frame");
+        local UIStroke = Instance.new("UIStroke");
+        local UICorner2 = Instance.new("UICorner");
+        local TabName = Instance.new("TextLabel");
+        local TabButton = Instance.new("TextButton");
 
-    Tab.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
-    Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Tab.BorderSizePixel = 0
-    Tab.Size = UDim2.new(1, 0, 0, 25)
-    Tab.Name = "Tab"
-    Tab.LayoutOrder = CountTab
-    Tab.Parent = ScrollTab
+        Tab.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
+        Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        Tab.BorderSizePixel = 0
+        Tab.Size = UDim2.new(1, 0, 0, 25)
+        Tab.Name = "Tab"
+        Tab.LayoutOrder = CountTab
+        Tab.Parent = ScrollTab
 
-    UICorner1.CornerRadius = UDim.new(0, 3)
-    UICorner1.Parent = Tab
+        UICorner1.CornerRadius = UDim.new(0, 3)
+        UICorner1.Parent = Tab
 
-    ChoosingFrame.AnchorPoint = Vector2.new(0, 1)
-    ChoosingFrame.BackgroundColor3 = GuiConfig.Color
-    ChoosingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    ChoosingFrame.BorderSizePixel = 0
-    ChoosingFrame.Position = UDim2.new(0, 5, 1, -6)
-    ChoosingFrame.Size = UDim2.new(0, 2, 0, 0)
-    ChoosingFrame.Name = "ChoosingFrame"
-    ChoosingFrame.Parent = Tab
+        ChoosingFrame.AnchorPoint = Vector2.new(0, 1)
+        ChoosingFrame.BackgroundColor3 = GuiConfig.Color
+        ChoosingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        ChoosingFrame.BorderSizePixel = 0
+        ChoosingFrame.Position = UDim2.new(0, 5, 1, -6)
+        ChoosingFrame.Size = UDim2.new(0, 2, 0, 0)
+        ChoosingFrame.Name = "ChoosingFrame"
+        ChoosingFrame.Parent = Tab
 
-    UIStroke.Color = GuiConfig.Color
-    UIStroke.Thickness = 0.8
-    UIStroke.Transparency = 0.999
-    UIStroke.Parent = ChoosingFrame
+        UIStroke.Color = GuiConfig.Color
+        UIStroke.Thickness = 0.800000011920929
+        UIStroke.Transparency = 0.999
+        UIStroke.Parent = ChoosingFrame
 
-    UICorner2.CornerRadius = UDim.new(0, 3)
-    UICorner2.Parent = ChoosingFrame
+        UICorner2.CornerRadius = UDim.new(0, 3)
+        UICorner2.Parent = ChoosingFrame
 
-    TabName.Font = Enum.Font.GothamBold
-    TabName.LineHeight = 0.9
-    TabName.Text = NameTab
-    TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
-    TabName.TextSize = 12
-    TabName.TextWrapped = true
-    TabName.TextXAlignment = Enum.TextXAlignment.Left
-    TabName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TabName.BackgroundTransparency = 0.999
-    TabName.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    TabName.BorderSizePixel = 0
-    TabName.Position = UDim2.new(0, 14, 0, 0)
-    TabName.Size = UDim2.new(1, -25, 1, 0)
-    TabName.Name = "TabName"
-    TabName.Parent = Tab
+        TabName.Font = Enum.Font.GothamBold
+        TabName.LineHeight = 0.8999999761581421
+        TabName.Text = NameTab
+        TabName.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TabName.TextSize = 12
+        TabName.TextWrapped = true
+        TabName.TextXAlignment = Enum.TextXAlignment.Left
+        TabName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TabName.BackgroundTransparency = 0.9990000128746033
+        TabName.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        TabName.BorderSizePixel = 0
+        TabName.Position = UDim2.new(0, 14, 0, 0)
+        TabName.Size = UDim2.new(1, -25, 1, 0)
+        TabName.Name = "TabName"
+        TabName.Parent = Tab
 
-    TabButton.Font = Enum.Font.SourceSans
-    TabButton.Text = ""
-    TabButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-    TabButton.TextSize = 14
-    TabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    TabButton.BackgroundTransparency = 0.999
-    TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    TabButton.BorderSizePixel = 0
-    TabButton.Size = UDim2.new(1, 0, 1, 0)
-    TabButton.Name = "TabButton"
-    TabButton.Parent = Tab
+        TabButton.Font = Enum.Font.SourceSans
+        TabButton.Text = ""
+        TabButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+        TabButton.TextSize = 14
+        TabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        TabButton.BackgroundTransparency = 0.9990000128746033
+        TabButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        TabButton.BorderSizePixel = 0
+        TabButton.Size = UDim2.new(1, 0, 1, 0)
+        TabButton.Name = "TabButton"
+        TabButton.Parent = Tab
 
-    if CountTab == 0 then
-        UIPageLayout:JumpToIndex(0)
-        BackButton.Text = TabName.Text
-        BackButton.Size = UDim2.new(0, BackButton.TextBounds.X + 3, 1, 0)
-        NameBack.Size = UDim2.new(0, BackButton.Size.X.Offset, 1, 0)
-        NameBack1.Position = UDim2.new(0, NameBack.Size.X.Offset, 0, 0)
-        NameBack1.Size = UDim2.new(1, -(NameBack1.Position.X.Offset), 1, 0)
-        ChoosingFrame.AnchorPoint = Vector2.new(0, 0)
-        ChoosingFrame.Position = UDim2.new(0, 5, 0, 6)
-        ChoosingFrame.Size = UDim2.new(0, 2, 0, 14)
-        Tab.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-        UIStroke.Transparency = 0
-    end
-
-    TabButton.Activated:Connect(function()
-        if Tab.LayoutOrder ~= UIPageLayout.CurrentPage.LayoutOrder then
-            for _, TabFrame in ScrollTab:GetChildren() do
-                if TabFrame.Name ~= "UIListLayout" then
-                    TabFrame.ChoosingFrame.AnchorPoint = Vector2.new(0, 1)
-                    TabFrame.ChoosingFrame.Position = UDim2.new(0, 5, 1, -6)
-                    TweenService:Create(
-                        TabFrame,
-                        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                        {BackgroundColor3 = Color3.fromRGB(28, 28, 28)}
-                    ):Play()
-                    TweenService:Create(
-                        TabFrame.ChoosingFrame,
-                        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                        {Size = UDim2.new(0, 2, 0, 0), Transparency = 0.999}
-                    ):Play()
-                    TweenService:Create(
-                        TabFrame.ChoosingFrame.UIStroke,
-                        TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                        {Transparency = 0.999}
-                    ):Play()
-                end
-            end
+        if CountTab == 0 then
+			UIPageLayout:JumpToIndex(0)
+            BackButton.Text = TabName.Text
+            BackButton.Size = UDim2.new(0, BackButton.TextBounds.X, 1, 0)
+            NameBack.Size = UDim2.new(0, BackButton.Size.X.Offset + 3, 1, 0)
+            NameBack1.Position = UDim2.new(0, NameBack.Size.X.Offset, 0, 0)
+            NameBack1.Size = UDim2.new(1,-(NameBack1.Position.X.Offset), 1, 0)
             ChoosingFrame.AnchorPoint = Vector2.new(0, 0)
             ChoosingFrame.Position = UDim2.new(0, 5, 0, 6)
-            TweenService:Create(
-                Tab,
-                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                {BackgroundColor3 = Color3.fromRGB(45, 45, 45)}
-            ):Play()
-            TweenService:Create(
-                ChoosingFrame,
-                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                {Size = UDim2.new(0, 2, 0, 14), Transparency = 0}
-            ):Play()
-            TweenService:Create(
-                UIStroke,
-                TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                {Transparency = 0}
-            ):Play()
-            JumpTo(Tab.LayoutOrder, TabName.Text)
-        end
-    end)
-
-    local Sections = {}
-    local Items = {}
-    local CountItem = 0
+            ChoosingFrame.Size = UDim2.new(0, 2, 0, 14)
+            Tab.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+			UIStroke.Transparency = 0
+		end
+        TabButton.Activated:Connect(function()
+            if Tab.LayoutOrder ~= UIPageLayout.CurrentPage.LayoutOrder then
+                for _, TabFrame in ScrollTab:GetChildren() do
+                    if TabFrame.Name ~= "UIListLayout" then
+                        TabFrame.ChoosingFrame.AnchorPoint = Vector2.new(0, 1)
+                        TabFrame.ChoosingFrame.Position = UDim2.new(0, 5, 1, -6)
+                        TweenService:Create(
+							TabFrame,
+							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							{BackgroundColor3 = Color3.fromRGB(28, 28, 28)}
+						):Play()
+                        TweenService:Create(
+                            TabFrame.ChoosingFrame,
+                            TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                            {Size = UDim2.new(0, 2, 0, 0), Transparency = 0.999}
+                        ):Play()
+                        TweenService:Create(
+                            TabFrame.ChoosingFrame.UIStroke,
+                            TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                            {Transparency = 0.999}
+                        ):Play()
+                    end
+                end
+                ChoosingFrame.AnchorPoint = Vector2.new(0, 0)
+                ChoosingFrame.Position = UDim2.new(0, 5, 0, 6)
+                TweenService:Create(
+                    Tab,
+                    TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                    {BackgroundColor3 = Color3.fromRGB(45, 45, 45)}
+                ):Play()
+                TweenService:Create(
+                    ChoosingFrame,
+                    TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                    {Size = UDim2.new(0, 2, 0, 14), Transparency = 0}
+                ):Play()
+                TweenService:Create(
+                    UIStroke,
+                    TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+                    {Transparency = 0}
+                ):Play()
+                JumpTo(Tab.LayoutOrder, TabName.Text)
+            end
+        end)
+        local Sections = {}
+        local CountSection = 0 
         function Sections:Section(SectionConfig)
             local SectionConfig = SectionConfig or {}
             SectionConfig.Title = SectionConfig.Title or "Title"
@@ -2953,16 +2950,16 @@ function Items:DropdownMulti(DropdownConfig)
         end
     end)
 
-                CountSection = CountSection + 1
-            CountTab = CountTab + 1 -- Tăng CountTab trong Section để đồng bộ
+    CountItem = CountItem + 1
+    return DropdownFunc
+end
+            CountSection = CountSection + 1
+            CountTab = CountTab + 1
             return Items
         end
-
         CountTab = CountTab + 1
         return Sections
     end
-
     return Tabs
 end
-
 return sitinklib
