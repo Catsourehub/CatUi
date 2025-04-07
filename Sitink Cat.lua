@@ -1261,79 +1261,7 @@ function sitinklib:Start(GuiConfig)
                 CountItem = CountItem + 1
                 return SeperatorFunc
             end
-            function Tabs:Paragraph(ParagraphConfig)
-    local ParagraphConfig = ParagraphConfig or {}
-    ParagraphConfig.Title = ParagraphConfig.Title or "Title"
-    ParagraphConfig.Content = ParagraphConfig.Content or "Content"
-    local ParagraphFunc = {}
-
-    local Paragraph = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
-    local ParagraphTitle = Instance.new("TextLabel")
-    local ParagraphContent = Instance.new("TextLabel")
-
-    Paragraph.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
-    Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
-    Paragraph.BorderSizePixel = 0
-    Paragraph.LayoutOrder = CountTab
-    Paragraph.Size = UDim2.new(1, -8, 0, 44)
-    Paragraph.Name = "Paragraph"
-    Paragraph.Parent = ScrollLayer
-
-    UICorner.CornerRadius = UDim.new(0, 3)
-    UICorner.Parent = Paragraph
-
-    ParagraphTitle.Font = Enum.Font.GothamBold
-    ParagraphTitle.Text = ParagraphConfig.Title
-    ParagraphTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-    ParagraphTitle.TextSize = 12
-    ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
-    ParagraphTitle.BackgroundTransparency = 1
-    ParagraphTitle.BorderSizePixel = 0
-    ParagraphTitle.Position = UDim2.new(0, 10, 0, 6)
-    ParagraphTitle.Size = UDim2.new(1, -20, 0, 12)
-    ParagraphTitle.Name = "ParagraphTitle"
-    ParagraphTitle.Parent = Paragraph
-
-    ParagraphContent.Font = Enum.Font.GothamBold
-    ParagraphContent.Text = ParagraphConfig.Content
-    ParagraphContent.TextColor3 = Color3.fromRGB(230, 230, 230)
-    ParagraphContent.TextSize = 11
-    ParagraphContent.TextTransparency = 0.5
-    ParagraphContent.TextXAlignment = Enum.TextXAlignment.Left
-    ParagraphContent.TextWrapped = true
-    ParagraphContent.BackgroundTransparency = 1
-    ParagraphContent.BorderSizePixel = 0
-    ParagraphContent.Position = UDim2.new(0, 10, 0, 20)
-    ParagraphContent.Size = UDim2.new(1, -20, 0, 11)
-    ParagraphContent.Name = "ParagraphContent"
-    ParagraphContent.Parent = Paragraph
-
-    -- Tự động điều chỉnh kích thước dựa trên nội dung
-    ParagraphContent:GetPropertyChangedSignal("Text"):Connect(function()
-        ParagraphContent.TextWrapped = false
-        local lines = math.ceil(ParagraphContent.TextBounds.X / ParagraphContent.AbsoluteSize.X)
-        ParagraphContent.Size = UDim2.new(1, -20, 0, 11 + (11 * lines))
-        Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 24)
-        ParagraphContent.TextWrapped = true
-        UpSize(ScrollLayer)
-    end)
-
-    ParagraphContent.TextWrapped = false
-    local lines = math.ceil(ParagraphContent.TextBounds.X / ParagraphContent.AbsoluteSize.X)
-    ParagraphContent.Size = UDim2.new(1, -20, 0, 11 + (11 * lines))
-    Paragraph.Size = UDim2.new(1, -8, 0, ParagraphContent.AbsoluteSize.Y + 24)
-    ParagraphContent.TextWrapped = true
-    UpSize(ScrollLayer)
-
-    function ParagraphFunc:Set(Title, Content)
-        ParagraphTitle.Text = Title or ParagraphConfig.Title
-        ParagraphContent.Text = Content or ParagraphConfig.Content
-    end
-
-    CountTab = CountTab + 1
-    return ParagraphFunc
-end
+            
              function Items:Paragraph(ParagraphConfig)
     local ParagraphConfig = ParagraphConfig or {}
     ParagraphConfig.Title = ParagraphConfig.Title or "Paragraph"
@@ -1751,176 +1679,57 @@ end
                 CountItem = CountItem + 1
                 return TextInputFunc
             end
-            function Items:Toggle(ToggleConfig)
-                local ToggleConfig = ToggleConfig or {}
-                ToggleConfig.Title = ToggleConfig.Title or "Title"
-                ToggleConfig.Content = ToggleConfig.Content or ""
-                ToggleConfig.Default = ToggleConfig.Default or false
-                ToggleConfig.Callback = ToggleConfig.Callback or function() end
-                local ToggleFunc = {Value = ToggleConfig.Default}
+function Items:Toggle(ToggleConfig)
+    local ToggleConfig = ToggleConfig or {}
+    ToggleConfig.Title = ToggleConfig.Title or "Toggle"
+    ToggleConfig.Default = ToggleConfig.Default or false
+    ToggleConfig.Callback = ToggleConfig.Callback or function() end
 
-                local Toggle = Instance.new("Frame");
-                local UICorner8 = Instance.new("UICorner");
-                local ToggleContent = Instance.new("TextLabel");
-                local ToggleTitle = Instance.new("TextLabel");
-                local ToggleSwitch = Instance.new("Frame");
-                local UICorner9 = Instance.new("UICorner");
-                local ToggleSwitch2 = Instance.new("Frame");
-                local UICorner10 = Instance.new("UICorner");
-                local SwitchImage = Instance.new("ImageLabel");
-                local ToggleButton = Instance.new("TextButton");
+    -- Tạo Frame cho toggle
+    local Toggle = Instance.new("Frame")
+    Toggle.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+    Toggle.BorderSizePixel = 0
+    Toggle.Size = UDim2.new(1, -8, 0, 30)
+    Toggle.Name = "Toggle"
+    Toggle.LayoutOrder = CountItem
+    Toggle.Parent = ScrollLayer1 -- ScrollLayer1 là khung cuộn của section
 
-                Toggle.BackgroundColor3 = Color3.fromRGB(42.000001296401024, 42.000001296401024, 42.000001296401024)
-                Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                Toggle.BorderSizePixel = 0
-                Toggle.LayoutOrder = CountItem
-                Toggle.Size = UDim2.new(1, -8, 0, 44)
-                Toggle.Name = "Toggle"
-                Toggle.Parent = ScrollLayer1
+    -- Tạo TextLabel cho tiêu đề toggle
+    local ToggleName = Instance.new("TextLabel")
+    ToggleName.Font = Enum.Font.GothamBold
+    ToggleName.Text = ToggleConfig.Title
+    ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ToggleName.TextSize = 13
+    ToggleName.TextXAlignment = Enum.TextXAlignment.Left
+    ToggleName.BackgroundTransparency = 1
+    ToggleName.Position = UDim2.new(0, 10, 0, 8)
+    ToggleName.Size = UDim2.new(1, -50, 0, 13)
+    ToggleName.Parent = Toggle
 
-                UICorner8.CornerRadius = UDim.new(0, 3)
-                UICorner8.Parent = Toggle
+    -- Tạo TextButton cho nút toggle
+    local ToggleButton = Instance.new("TextButton")
+    ToggleButton.BackgroundColor3 = ToggleConfig.Default and Color3.fromRGB(127, 146, 242) or Color3.fromRGB(60, 60, 60)
+    ToggleButton.Size = UDim2.new(0, 20, 0, 20)
+    ToggleButton.Position = UDim2.new(1, -30, 0.5, -10)
+    ToggleButton.Text = ""
+    ToggleButton.Parent = Toggle
 
-                ToggleContent.Font = Enum.Font.GothamBold
-                ToggleContent.LineHeight = 0.8999999761581421
-                ToggleContent.Text = ToggleConfig.Content
-                ToggleContent.TextColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-                ToggleContent.TextSize = 11
-                ToggleContent.TextTransparency = 0.5
-                ToggleContent.TextXAlignment = Enum.TextXAlignment.Left
-                ToggleContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                ToggleContent.BackgroundTransparency = 0.9990000128746033
-                ToggleContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleContent.BorderSizePixel = 0
-                ToggleContent.Position = UDim2.new(0, 10, 0, 22)
-                ToggleContent.Size = UDim2.new(1, -70, 0, 11)
-                ToggleContent.Name = "ToggleContent"
-                ToggleContent.Parent = Toggle
+    -- Thiết lập trạng thái toggle
+    local toggleState = ToggleConfig.Default
 
-                if ToggleContent.Text == "" then
-                    Toggle.Size = UDim2.new(1, -8, 0, 33)
-                else
-                    ToggleContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
-                        ToggleContent.TextWrapped = false
-                        ToggleContent.Size = UDim2.new(1, -70, 0, 11 + (11 * (ToggleContent.TextBounds.X // ToggleContent.AbsoluteSize.X)))
-                        Toggle.Size = UDim2.new(1, -8, 0, ToggleContent.AbsoluteSize.Y + 33)
-                        ToggleContent.TextWrapped = true
-                        UpSize(ScrollLayer1)
-                    end)
-                    
-                    ToggleContent.TextWrapped = false
-                    ToggleContent.Size = UDim2.new(1, -70, 0, 11 + (11 * (ToggleContent.TextBounds.X // ToggleContent.AbsoluteSize.X)))
-                    Toggle.Size = UDim2.new(1, -8, 0, ToggleContent.AbsoluteSize.Y + 33)
-                    ToggleContent.TextWrapped = true
-                end
+    -- Sự kiện khi nhấn nút toggle
+    ToggleButton.Activated:Connect(function()
+        toggleState = not toggleState
+        ToggleButton.BackgroundColor3 = toggleState and Color3.fromRGB(127, 146, 242) or Color3.fromRGB(60, 60, 60)
+        ToggleConfig.Callback(toggleState)
+    end)
 
-                ToggleTitle.Font = Enum.Font.GothamBold
-                ToggleTitle.Text = ToggleConfig.Title
-                ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-                ToggleTitle.TextSize = 12
-                ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
-                ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                ToggleTitle.BackgroundTransparency = 0.9990000128746033
-                ToggleTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleTitle.BorderSizePixel = 0
-                ToggleTitle.Position = UDim2.new(0, 10, 0, 10)
-                ToggleTitle.Size = UDim2.new(1, -70, 0, 12)
-                ToggleTitle.Name = "ToggleTitle"
-                ToggleTitle.Parent = Toggle
+    -- Cập nhật kích thước ScrollLayer
+    UpSize(ScrollLayer1) -- Giả định UpSize là hàm cập nhật kích thước
 
-                ToggleSwitch.AnchorPoint = Vector2.new(1, 0.5)
-                ToggleSwitch.BackgroundColor3 = Color3.fromRGB(230.00000149011612, 230.00000149011612, 230.00000149011612)
-                ToggleSwitch.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleSwitch.BorderSizePixel = 0
-                ToggleSwitch.Position = UDim2.new(1, -10, 0.5, 0)
-                ToggleSwitch.Size = UDim2.new(0, 40, 0, 18)
-                ToggleSwitch.Name = "ToggleSwitch"
-                ToggleSwitch.Parent = Toggle
-
-                UICorner9.CornerRadius = UDim.new(1, 0)
-                UICorner9.Parent = ToggleSwitch
-
-                ToggleSwitch2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-                ToggleSwitch2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleSwitch2.BorderSizePixel = 0
-                ToggleSwitch2.Position = UDim2.new(0, 1, 0, 1)
-                ToggleSwitch2.Size = UDim2.new(1, -2, 1, -2)
-                ToggleSwitch2.Name = "ToggleSwitch2"
-                ToggleSwitch2.Parent = ToggleSwitch
-
-                UICorner10.CornerRadius = UDim.new(1, 0)
-                UICorner10.Parent = ToggleSwitch2
-
-                SwitchImage.Image = "rbxassetid://3926305904"
-                SwitchImage.ImageRectOffset = Vector2.new(124, 124)
-                SwitchImage.ImageRectSize = Vector2.new(36, 36)
-                SwitchImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                SwitchImage.BackgroundTransparency = 1
-                SwitchImage.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                SwitchImage.BorderSizePixel = 0
-                SwitchImage.Position = UDim2.new(0, 0, 0, 0)
-                SwitchImage.Size = UDim2.new(0, 16, 0, 16)
-                SwitchImage.Name = "SwitchImage"
-                SwitchImage.Parent = ToggleSwitch2
-
-                ToggleButton.Font = Enum.Font.SourceSans
-                ToggleButton.Text = ""
-                ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleButton.TextSize = 14
-                ToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                ToggleButton.BackgroundTransparency = 0.9990000128746033
-                ToggleButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-                ToggleButton.BorderSizePixel = 0
-                ToggleButton.Size = UDim2.new(1, 0, 1, 0)
-                ToggleButton.Name = "ToggleButton"
-                ToggleButton.Parent = Toggle
-
-                function ToggleFunc:Set(Value)
-                    if Value then
-                        TweenService:Create(
-                            ToggleSwitch,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {BackgroundColor3 = GuiConfig.Color} 
-                        ):Play()
-                        TweenService:Create(
-                            ToggleSwitch2,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {BackgroundColor3 = GuiConfig.Color} 
-                        ):Play()
-                        TweenService:Create(
-                            SwitchImage,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {Position = UDim2.new(0, 22, 0, 0)}
-                        ):Play()
-                    else
-                        TweenService:Create(
-                            ToggleSwitch,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {BackgroundColor3 = Color3.fromRGB(230, 230, 230)} 
-                        ):Play()
-                        TweenService:Create(
-                            ToggleSwitch2,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {BackgroundColor3 = Color3.fromRGB(40, 40, 40)} 
-                        ):Play()
-                        TweenService:Create(
-                            SwitchImage,
-                            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-                            {Position = UDim2.new(0, 0, 0, 0)}
-                        ):Play()
-                    end
-                    ToggleFunc.Value = Value
-                    ToggleConfig.Callback(Value)
-                end
-                EnterMouse(Toggle)
-                ToggleButton.Activated:Connect(function()
-                    ToggleFunc.Value = not ToggleFunc.Value
-                    ToggleFunc:Set(ToggleFunc.Value)
-                end)
-                ToggleFunc:Set(ToggleFunc.Value)
-                CountItem = CountItem + 1    
-                return ToggleFunc
-            end
+    CountItem = CountItem + 1
+    return Toggle
+end
             function Items:Toggle1(ToggleConfig)
     local ToggleConfig = ToggleConfig or {}
     ToggleConfig.Title = ToggleConfig.Title or "Toggle1"
