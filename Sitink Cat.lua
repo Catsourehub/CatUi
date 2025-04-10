@@ -2525,67 +2525,88 @@ function sitinklib:Start(GuiConfig)
                 return SeperatorFunc
 
             end
+-- Thêm vào trong function Items:Label(LabelConfig)
 function Items:Label(LabelConfig)
     local LabelConfig = LabelConfig or {}
-    LabelConfig.Title = LabelConfig.Title or "Label"  -- Tiêu đề mặc định
-    LabelConfig.Content = LabelConfig.Content or ""   -- Nội dung mặc định
+    LabelConfig.Title = LabelConfig.Title or "Label"
+    LabelConfig.Content = LabelConfig.Content or "Content"
+    local LabelFunc = {}
 
-    -- Tạo các thành phần giao diện
     local Label = Instance.new("Frame")
-    local UICorner = Instance.new("UICorner")
+    local UICorner15 = Instance.new("UICorner")
     local LabelTitle = Instance.new("TextLabel")
     local LabelContent = Instance.new("TextLabel")
 
-    -- Cấu hình Frame chính
     Label.BackgroundColor3 = Color3.fromRGB(42, 42, 42)
+    Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Label.BorderSizePixel = 0
-    Label.LayoutOrder = CountItem -- Giả định CountItem là biến toàn cục trong thư viện
-    Label.Size = UDim2.new(1, -8, 0, 44)
+    Label.LayoutOrder = CountItem
+    Label.Size = UDim2.new(1, -8, 0, 35)
     Label.Name = "Label"
-    Label.Parent = ScrollLayer1 -- Giả định ScrollLayer1 là khung chứa trong Section
+    Label.Parent = ScrollLayer1
 
-    UICorner.CornerRadius = UDim.new(0, 3)
-    UICorner.Parent = Label
+    UICorner15.CornerRadius = UDim.new(0, 3)
+    UICorner15.Parent = Label
 
-    -- Tiêu đề
     LabelTitle.Font = Enum.Font.GothamBold
     LabelTitle.Text = LabelConfig.Title
-    LabelTitle.TextColor3 = Color3.fromRGB(230, 230, 230)
+    LabelTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
     LabelTitle.TextSize = 12
     LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
-    LabelTitle.BackgroundTransparency = 1
+    LabelTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LabelTitle.BackgroundTransparency = 0.999
+    LabelTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
     LabelTitle.BorderSizePixel = 0
-    LabelTitle.Position = UDim2.new(0, 10, 0, 6)
+    LabelTitle.Position = UDim2.new(0, 10, 0, 4)
     LabelTitle.Size = UDim2.new(1, -20, 0, 12)
     LabelTitle.Name = "LabelTitle"
     LabelTitle.Parent = Label
 
-    -- Nội dung
-    LabelContent.Font = Enum.Font.Gotham
+    LabelContent.Font = Enum.Font.GothamBold
     LabelContent.Text = LabelConfig.Content
-    LabelContent.TextColor3 = Color3.fromRGB(180, 180, 180)
-    LabelContent.TextSize = 12
+    LabelContent.TextColor3 = Color3.fromRGB(230, 230, 230)
+    LabelContent.TextSize = 11
+    LabelContent.TextTransparency = 0.5
     LabelContent.TextXAlignment = Enum.TextXAlignment.Left
-    LabelContent.TextWrapped = true
-    LabelContent.BackgroundTransparency = 1
+    LabelContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LabelContent.BackgroundTransparency = 0.999
+    LabelContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
     LabelContent.BorderSizePixel = 0
-    LabelContent.Position = UDim2.new(0, 10, 0, 20)
-    LabelContent.Size = UDim2.new(1, -20, 0, 20)
+    LabelContent.Position = UDim2.new(0, 10, 0, 18)
+    LabelContent.Size = UDim2.new(1, -20, 0, 11)
     LabelContent.Name = "LabelContent"
     LabelContent.Parent = Label
 
-    -- Hàm trả về để cập nhật nội dung
-    local LabelFunc = {}
-    function LabelFunc:SetContent(newContent)
-        LabelContent.Text = tostring(newContent)
-    end
-    function LabelFunc:SetTitle(newTitle)
-        LabelTitle.Text = tostring(newTitle)
+    -- Điều chỉnh kích thước nếu có nội dung dài
+    if LabelContent.Text ~= "" then
+        LabelContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+            LabelContent.TextWrapped = false
+            LabelContent.Size = UDim2.new(1, -20, 0, 11 + (11 * (LabelContent.TextBounds.X // LabelContent.AbsoluteSize.X)))
+            Label.Size = UDim2.new(1, -8, 0, LabelContent.AbsoluteSize.Y + 18)
+            LabelContent.TextWrapped = true
+            UpSize(ScrollLayer1)
+        end)
+
+        LabelContent.TextWrapped = false
+        LabelContent.Size = UDim2.new(1, -20, 0, 11 + (11 * (LabelContent.TextBounds.X // LabelContent.AbsoluteSize.X)))
+        Label.Size = UDim2.new(1, -8, 0, LabelContent.AbsoluteSize.Y + 18)
+        LabelContent.TextWrapped = true
     end
 
-    CountItem = CountItem + 1 -- Tăng biến đếm (giả định thư viện dùng biến này)
+    -- Hàm để cập nhật nội dung
+    function LabelFunc:Set(Content)
+        LabelContent.Text = Content
+        LabelContent.TextWrapped = false
+        LabelContent.Size = UDim2.new(1, -20, 0, 11 + (11 * (LabelContent.TextBounds.X // LabelContent.AbsoluteSize.X)))
+        Label.Size = UDim2.new(1, -8, 0, LabelContent.AbsoluteSize.Y + 18)
+        LabelContent.TextWrapped = true
+        UpSize(ScrollLayer1)
+    end
+
+    CountItem = CountItem + 1
     return LabelFunc
 end
+
  function Items:Paragraph1(ParagraphConfig)
 
     local ParagraphConfig = ParagraphConfig or {}
