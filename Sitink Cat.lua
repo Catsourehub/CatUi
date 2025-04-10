@@ -2774,7 +2774,7 @@ end
                 ParagraphTitle.Name = "ParagraphTitle"
                 ParagraphTitle.Parent = Paragraph
 
-                function Paragraph1Func:Set(Value)
+                function ParagraphFunc:Set(Value)
                     local Value = Value or {}
                     Value.Title = Value.Title or ParagraphTitle.Text
                     Value.Content = Value.Content or ParagraphContent.Text
