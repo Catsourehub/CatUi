@@ -2525,7 +2525,7 @@ function sitinklib:Start(GuiConfig)
                 return SeperatorFunc
 
             end
-function Section:Label(LabelConfig)
+function Items:Label(LabelConfig)
     local LabelConfig = LabelConfig or {}
     LabelConfig.Title = LabelConfig.Title or "Label"  -- Tiêu đề mặc định
     LabelConfig.Content = LabelConfig.Content or ""   -- Nội dung mặc định
